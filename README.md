@@ -1,84 +1,66 @@
 
-<div align="center">
-
 # WHOLESALE CUSTOMER SPENDING ANALYSIS
 
-### Applying Linear Algebra to Wholesale Customer Purchasing Patterns
+---
 
-![Python](https://img.shields.io/badge/Python-Programming-blue?logo=python)
-![NumPy](https://img.shields.io/badge/NumPy-Linear%20Algebra-013243?logo=numpy)
-![Dataset](https://img.shields.io/badge/Dataset-UCI%20Repository-orange)
+## A. Proposed Study
 
-</div>
+This project will use the Wholesale Customers dataset to study how business customers spend on different product categories. The data records the annual spending of customers of a wholesale distributor. By applying linear algebra, the group will organize the spending data, look for patterns among customers, and examine how spending on selected product categories is related to grocery spending.
+
+The main goal is to show how numerical data can help a business understand its customers. The results may help a wholesaler recognize customers with similar buying habits and make better decisions when planning product stocks and customer offers.
 
 ---
 
-## 1. PROPOSED STUDY
+## B. Objectives
 
-This project analyzes the annual spending patterns of wholesale customers across different product categories using linear algebra. It focuses on identifying similarities in customer purchasing behavior and examining relationships between product categories, particularly grocery spending. The results aim to help businesses understand customer demand, recognize purchasing trends, improve inventory management, and make better stocking decisions.
-
----
-
-## 2. OBJECTIVES
-
-The study aims to:
-
-1. Organize customers' annual spending data into numerical matrices using Python and NumPy.
-2. Apply linear algebra operations to identify patterns and relationships among product categories.
-3. Identify customers with similar purchasing behaviors based on their spending patterns.
-4. Develop a basic regression model to estimate grocery spending using other product-category expenditures.
+1. Organize the customers' annual spending into a numerical matrix using Python and NumPy.
+2. Use linear algebra operations to examine relationships and patterns among product categories.
+3. Group customers with similar spending behavior based on the selected numerical features.
+4. Build a basic regression model to estimate grocery spending from the other product-category spending values.
 
 ---
 
-## 3. DATASET INFORMATION
+## C. Dataset Information
 
-| Dataset Details | Description |
+| Information | Details |
 |:---|:---|
 | Dataset Name | Wholesale Customers Dataset |
-| Source | UCI Machine Learning Repository |
-| Total Observations | 440 customers |
-| Numerical Variables | 6 product categories |
+| Dataset Source | UCI Machine Learning Repository |
+| Dataset Link | [View Dataset](https://archive.ics.uci.edu/dataset/292/wholesale+customers) |
+| Number of Observations | 440 customers |
+| Number of Selected Features | 6 numerical variables |
 | Target Variable | Grocery |
 | File Format | CSV |
-| Data Type | Numerical and categorical |
+| Dataset Description | Annual spending information of wholesale distributor customers across six product categories, with customer channel and region information. |
 
-**Dataset Source:** [UCI Wholesale Customers Dataset](https://archive.ics.uci.edu/dataset/292/wholesale+customers)
+### Dataset Description
 
-### Dataset Overview
-
-The dataset contains annual spending information from 440 wholesale customers. It includes six product categories, along with additional information about customer channels and regions.
+The dataset contains information about 440 wholesale customers. It includes their annual spending on fresh products, milk products, grocery items, frozen products, detergents and paper products, and delicatessen items. It also records each customer's business channel and region. For this project, the group will focus on the six numerical spending variables.
 
 ---
 
-## 4. DESCRIPTION OF VARIABLES
+## D. Description of Variables
 
-The following variables represent the annual spending of wholesale customers.
+| Variable Name | Description | Data Type | Role |
+|:---|:---|:---|:---|
+| Fresh | Annual spending on fresh products | Numerical | Independent |
+| Milk | Annual spending on milk products | Numerical | Independent |
+| Grocery | Annual spending on grocery products | Numerical | Dependent |
+| Frozen | Annual spending on frozen products | Numerical | Independent |
+| Detergents_Paper | Annual spending on detergents and paper products | Numerical | Independent |
+| Delicassen | Annual spending on delicatessen products | Numerical | Independent |
 
-| Variable | Description |
-|:---|:---|
-| Fresh | Spending on fresh products |
-| Milk | Spending on milk products |
-| Grocery | Spending on grocery products |
-| Frozen | Spending on frozen products |
-| Detergents_Paper | Spending on detergents and paper |
-| Delicassen | Spending on delicatessen products |
+### Justification of the Selected Variables
 
-### Variable Classification
-
-| Category | Variables |
-|:---|:---|
-| Independent Variables (X) | Fresh, Milk, Frozen, Detergents_Paper, Delicassen |
-| Dependent Variable (Y) | Grocery |
-
-**Explanation:** Grocery is selected as the target variable, while the remaining five product categories serve as independent variables for the proposed regression analysis.
+The six variables represent the main product groups purchased by each wholesale customer. Looking at these spending amounts together can show which product categories customers tend to buy more often or in larger amounts. Grocery spending is selected as the target variable, while spending on the other five categories will be used as the input variables for the basic prediction model. The channel and region fields are not included in the numerical feature matrix because they are categorical information.
 
 ---
 
-## 5. SAMPLE DATASET
+## E. Sample Dataset
 
-The following table presents five sample observations from the dataset.
+The table below shows five sample observations from the Wholesale Customers dataset. The values are annual spending amounts in monetary units (m.u.).
 
-| Customer | Fresh | Milk | Grocery | Frozen | Detergents | Delicassen |
+| Observation | Fresh | Milk | Grocery | Frozen | Detergents_Paper | Delicacies |
 |:---:|---:|---:|---:|---:|---:|---:|
 | 1 | 12,669 | 9,656 | 7,561 | 214 | 2,674 | 1,338 |
 | 2 | 7,057 | 9,810 | 9,568 | 1,762 | 3,293 | 1,776 |
@@ -86,98 +68,52 @@ The following table presents five sample observations from the dataset.
 | 4 | 13,265 | 1,196 | 4,221 | 6,404 | 507 | 1,788 |
 | 5 | 22,615 | 5,410 | 7,198 | 3,915 | 1,777 | 5,185 |
 
-*Note: These values represent the first five observations. Spending amounts are expressed in monetary units.*
+> **Note:** These are the first five customer records shown in the dataset. Values are presented as recorded.
 
 ---
 
-## 6. APPLICATION OF LINEAR ALGEBRA CONCEPTS
+## F. Proposed Application of Linear Algebra Concepts
 
-The project will apply the following mathematical concepts to analyze customer spending patterns.
-
-| Linear Algebra Concept | Application in the Study |
+| Linear Algebra Concept | Proposed Application |
 |:---|:---|
-| Matrices | Organize customer spending data into numerical matrices. |
-| Vector Spaces | Examine the linear independence and rank of spending variables. |
-| Linear Transformations | Standardize data to make product-category values comparable. |
-| Determinants | Examine the invertibility of suitable square matrices. |
-| Eigenvalues and Eigenvectors | Identify important patterns and variations in customer spending. |
-| Diagonalization | Support dimensionality reduction through Principal Component Analysis (PCA). |
-| Regression | Estimate grocery spending using the other product categories. |
+| **Matrices** | Arrange the five input variables (Fresh, Milk, Frozen, Detergents_Paper, and Delicassen) into a feature matrix X. Grocery spending will be stored separately as the target vector y. |
+| **Vector Spaces** | Examine the columns of the feature matrix and determine whether some spending variables provide similar or repeated information by checking their linear independence and the rank of X. |
+| **Linear Transformations** | Standardize the spending values so that categories with larger amounts do not dominate the analysis simply because of their scale. |
+| **Determinants** | Use determinants on suitable square matrices, such as a selected covariance or Gram matrix, to help check whether the matrix is invertible. This will be done only when the matrix is square. |
+| **Eigenvalues and Eigenvectors** | Calculate the eigenvalues and eigenvectors of the covariance matrix to identify the main directions in which customer spending varies. |
+| **Diagonalization** | Use the eigenvectors and eigenvalues as part of Principal Component Analysis (PCA) to reduce the number of dimensions while keeping as much of the variation in the spending data as possible. |
+| **Regression Model** | Apply Ordinary Least Squares regression to estimate a customer's grocery spending using the other five product-category spending variables. |
 
----
+### Example of the Proposed Matrix Representation
 
-## 7. MATRIX REPRESENTATION
+Using the first three observations and the five independent variables, the feature matrix can be represented as:
 
-The spending information will be represented using a matrix containing five independent variables.
-
-### Sample Feature Matrix (X)
+**Feature Matrix (X)**
 
 ```text
-       Fresh  Milk  Frozen  Detergents  Delicassen
-
-X = [ 12669   9656    214      2674       1338
-       7057   9810   1762      3293       1776
-       6353   8808   2405      3516       7844 ]
+X = [ 12669   9656    214   2674   1338 ]
+    [  7057   9810   1762   3293   1776 ]
+    [  6353   8808   2405   3516   7844 ]
 ```
 
-Each row represents a customer, while each column represents a product category.
+This sample matrix has three rows and five columns. Each row represents one customer, while each column represents one spending category used as an input.
 
-### Target Vector (Y)
-
-```text
-Y = [ 7561
-      9568
-      7684 ]
-```
-
-The target vector contains the corresponding grocery spending values.
-
-### Matrix Dimensions
-
-| Matrix | Dimensions | Description |
-|:---|:---:|:---|
-| X | 440 × 5 | Independent variables |
-| Y | 440 × 1 | Grocery spending |
-| Full Dataset | 440 × 6 | Six spending categories |
+The full feature matrix will contain 440 rows and five columns. Grocery spending will be arranged separately as the target vector with 440 values. The group will use Python and NumPy to perform the matrix operations, then use the results to explore customer spending patterns.
 
 ---
 
-## 8. EXPECTED OUTPUT
+## References
 
-Through the application of linear algebra, the study expects to:
+1. Cardoso, M. (2013). *Wholesale Customers* [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C5030X
 
-- Identify similarities in customer purchasing behavior.
-- Determine relationships among product categories.
-- Recognize important spending patterns.
-- Estimate grocery spending through regression.
-- Provide insights that can support inventory planning and business decisions.
+2. UCI Machine Learning Repository. (n.d.). *Wholesale customers.* https://archive.ics.uci.edu/dataset/292/wholesale+customers
 
 ---
 
-## 9. TOOLS AND TECHNOLOGIES
+**Project Title:** Wholesale Customer Spending Analysis
 
-| Tool | Purpose |
-|:---|:---|
-| Python | Main programming language |
-| NumPy | Matrix operations and calculations |
-| Pandas | Dataset organization and manipulation |
-| Matplotlib | Data visualization |
-| Scikit-learn | Regression and data analysis |
+**Programming Language:** Python
 
----
+**Main Library:** NumPy
 
-## 10. REFERENCES
-
-1. Cardoso, M. (2013). *Wholesale Customers Dataset*. UCI Machine Learning Repository.
-
-2. UCI Machine Learning Repository. [Wholesale Customers Dataset](https://archive.ics.uci.edu/dataset/292/wholesale+customers).
-
----
-
-<div align="center">
-
-**WHOLESALE CUSTOMER SPENDING ANALYSIS**
-
-*Using Linear Algebra for Data-Driven Business Decisions*
-
-</div>
+**Dataset:** Wholesale Customers Dataset
